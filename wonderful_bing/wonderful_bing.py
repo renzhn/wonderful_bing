@@ -5,8 +5,8 @@
 A wallpaper a day, keep the doctor away.
 
 Usage:
-  bing set [-d DIRECTORY] ENVIRONMENT
-  bing story
+  bing set [-d DIRECTORY] [-c COUNTRY_CODE] ENVIRONMENT
+  bing [-c COUNTRY_CODE] story
   bing -V | --version
   bing -h | --help
 
@@ -18,6 +18,8 @@ Options:
   -V, --version              show the version and exit
   -d, --directory=DIRECTORY  specify where to save the download picture
                              [default: /tmp]
+  -c, --country=COUNTRY_CODE              specify which country's bing
+                             [default: en-US][ex: zh-CN, ja-JP]
 """
 
 from __future__ import absolute_import, unicode_literals
@@ -37,8 +39,11 @@ from wonderful_bing import __version__
 class WonderfulBing(object):
     def __init__(self, arguments):
         # Get all the information we need from this url, see issue#7
+        self.country = arguments['--country']
+        if not self.country:
+            self.country = 'en-US'
         self.url = "http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=\
-                   1&nc=1409879295618&pid=hp"
+                   1&nc=1409879295618&pid=hp&mkt=" + self.country
         information = requests.get(self.url).json()["images"][0]
         self.copyright = information["copyright"]
         self.picture_url = information["url"]
