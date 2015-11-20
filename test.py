@@ -13,6 +13,7 @@ class WonderfulBingTestCase(unittest.TestCase):
         self.directory = '/tmp/'
         self.not_exist_dir = '/notexist/'
         self.arguments = {'--directory': self.directory,
+                          '--country': 'en-US',
                           'ENVIRONMENT': 'gnome'}
 
     def tearDown(self):
