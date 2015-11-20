@@ -18,7 +18,7 @@ Options:
   -V, --version              show the version and exit
   -d, --directory=DIRECTORY  specify where to save the download picture
                              [default: /tmp]
-  -c, --country=COUNTRY_CODE              specify which country's bing
+  -c, --country=COUNTRY_CODE specify which country's bing
                              [default: en-US][ex: zh-CN, ja-JP]
 """
 
