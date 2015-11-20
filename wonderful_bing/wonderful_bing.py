@@ -39,9 +39,7 @@ from wonderful_bing import __version__
 class WonderfulBing(object):
     def __init__(self, arguments):
         # Get all the information we need from this url, see issue#7
-        self.country = arguments['--country']
-        if not self.country:
-            self.country = 'en-US'
+        self.country = arguments['--country'] or 'en-US'
         self.url = "http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=\
                    1&nc=1409879295618&pid=hp&mkt=" + self.country
         information = requests.get(self.url).json()["images"][0]
